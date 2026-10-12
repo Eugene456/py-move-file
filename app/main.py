@@ -9,6 +9,9 @@ def move_file(command: str) -> None:
 
     source, destination = command_list[1], command_list[2]
 
+    if destination.endswith(("/", os.sep)):
+        destination = os.path.join(destination, os.path.basename(source))
+
     if source == destination or not os.path.exists(source):
         return
 
